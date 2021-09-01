@@ -1,0 +1,26 @@
+1. App has 2 pages (views)
+    1. A root route AKA home page - this renders to application/hello view 
+    - this view should be able to tell if a user is logged in 
+        - if a user is NOT logged in, show a login link
+        - if a user is logged in, the page should say "hi #{name} and provide logout link
+
+View/Application/Hello 
+    **This view is used for when someone IS logged in and it provides a logout link 
+    ** The logout link works using the session destroy action - and the button is a hyperlink that says logout 
+        <h1>Hi, <%= session[:name] %>.</h1>
+        <%= form_tag ({controller: 'sessions', action: 'destroy', method: 'post'}) do %>
+        <input type=submit value='logout'>
+        <% end %>
+
+
+
+2. A login page
+    - Users can enter their name in a form and click login - the app remembers this session 
+    - if the user does not enter a name, they are not logged in 
+        - return them to the login page 
+
+
+        <%= form_tag ({controller: 'sessions', action: 'create', method: 'post'}) do %>
+        <input name=name>
+        <input type=submit value='login'>
+        <% end %>
